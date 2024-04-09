@@ -10,3 +10,8 @@ body {
 ul {
     list-style-type: none;
 }
+
+.gradient-border {
+    border: 3px solid transparent;
+    border-radius: 10px;
+}

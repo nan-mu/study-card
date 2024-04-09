@@ -34,7 +34,7 @@ function toggle_style_value() {
 }
 
 /// 路由切换函数
-function switch_page(page) {
+const switch_page = (page) => {
     // Snackbar("切换页面：" + page);
     // 根据传入的页面参数进行路由切换
     switch (page) {
