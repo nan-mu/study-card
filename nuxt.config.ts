@@ -11,4 +11,13 @@ export default defineNuxtConfig({
         modulePath: '...',
         exclude: ['...']
     },
+    css: ['~/assets/css/main.css', 'cn-fontsource-lxgw-wen-kai-gb-screen/font.css'],
+    // app: {
+    //     head: {
+    //         link: [{
+    //             rel: 'stylesheet',
+    //             href: 'https://cdn.jsdelivr.net/npm/cn-fontsource-lxgw-wen-kai-gb-screen@1.0.6/font.min.css'
+    //         }]
+    //     }
+    // },
 })

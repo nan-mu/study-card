@@ -1,0 +1,8 @@
+@import 'cn-fontsource-lxgw-wen-kai-gb-screen/font.css';
+
+body {
+    transition: background-color .25s, color .25s;
+    color: var(--color-text);
+    background-color: var(--color-body);
+    font-family: "LXGW WenKai GB Screen";
+}

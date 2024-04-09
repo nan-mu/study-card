@@ -2693,6 +2693,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cn-fontsource-lxgw-wen-kai-gb-screen@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "cn-fontsource-lxgw-wen-kai-gb-screen@npm:1.0.6"
+  checksum: 10c0/635d5385d7a2965b5d1f7635501837aedd01c0db6f7adf4a1caca67079b84d5c9b61ef8e9385ece7b2751747e17f439a8806792e791c709f31a37880afbe07be
+  languageName: node
+  linkType: hard
+
 "color-convert@npm:^1.9.0":
   version: 1.9.3
   resolution: "color-convert@npm:1.9.3"
@@ -5339,6 +5346,7 @@ __metadata:
     "@varlet/import-resolver": "npm:^3.2.3"
     "@varlet/nuxt": "npm:^0.1.2"
     "@varlet/ui": "npm:^3.2.3"
+    cn-fontsource-lxgw-wen-kai-gb-screen: "npm:^1.0.6"
     nuxt: "npm:^3.11.2"
     unplugin-auto-import: "npm:^0.17.5"
     unplugin-vue-components: "npm:^0.26.0"

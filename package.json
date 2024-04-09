@@ -12,6 +12,7 @@
   "dependencies": {
     "@varlet/nuxt": "^0.1.2",
     "@varlet/ui": "^3.2.3",
+    "cn-fontsource-lxgw-wen-kai-gb-screen": "^1.0.6",
     "nuxt": "^3.11.2",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
