@@ -35,7 +35,7 @@ function toggle_style_value() {
 
 /// 路由切换函数
 function switch_page(page) {
-    Snackbar("切换页面：" + page);
+    // Snackbar("切换页面：" + page);
     // 根据传入的页面参数进行路由切换
     switch (page) {
         case 0:
@@ -77,13 +77,11 @@ function switch_page(page) {
         </template>
 
     </var-app-bar>
-    <br />
-    <br />
-    <br />
+    <br /><br /><br /><br />
 
     <!-- 页面 -->
     <var-row :gutter="[10, 10]">
-        <var-col :offset="1" :span="20">
+        <var-col :offset="1" :span="22">
             <NuxtPage />
         </var-col>
     </var-row>

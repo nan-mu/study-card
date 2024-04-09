@@ -11,6 +11,7 @@ export default defineNuxtConfig({
         modulePath: '...',
         exclude: ['...']
     },
+
     css: ['~/assets/css/main.css', 'cn-fontsource-lxgw-wen-kai-gb-screen/font.css'],
     // app: {
     //     head: {
