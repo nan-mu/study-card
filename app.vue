@@ -2,7 +2,7 @@
 import { StyleProvider, Themes } from '@varlet/ui'
 import { onMounted, onUnmounted } from 'vue';
 
-const style_value = ref(true);
+const style_value = useState("style_value", () => true);
 const active = ref(0);
 const left = ref(false);
 const router = useRouter();
