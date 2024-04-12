@@ -9,9 +9,7 @@ export default defineEventHandler((event) => new Promise((res, _) => {
         client.write("*3\r\n+find\r\n+Lesson\r\n");
     });
     client.on("data", buffer => {
-        setTimeout(() => {
-            client.destroy();
-        }, 3000);
+        client.destroy();
         res(buffer.toString().split("\r\n"));
     });
 }));
