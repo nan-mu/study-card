@@ -22,7 +22,8 @@ export default defineEventHandler((event) => new Promise((res, _) => {
             "班级": lesson_info_arrary[5].split("：")[1],
             "人数": lesson_info_arrary[6].split("：")[1],
             "学分": lesson_info_arrary[7].split("：")[1],
-            "学时": lesson_info_arrary.slice(8)
+            "学时": lesson_info_arrary.slice(8).join(),
+            enable: false
         }
         res(lesson_info);
     });

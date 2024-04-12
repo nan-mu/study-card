@@ -81,11 +81,10 @@ const switch_page = (page) => {
 
     <!-- 页面 -->
     <var-row :gutter="[10, 10]">
-        <var-col :offset="1" :span="22">
-            <NuxtPage />
-        </var-col>
+        <NuxtPage />
     </var-row>
 
+    <br /><br /><br /><br />
     <var-bottom-navigation @change="switch_page" variant v-model:active="active" :fixed="true">
         <var-bottom-navigation-item icon="home" label="首页" />
         <var-bottom-navigation-item icon="calendar-month" label="选课" />
