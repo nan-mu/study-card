@@ -1,6 +1,5 @@
 <script setup>
 import { StyleProvider, Themes } from '@varlet/ui'
-import { Snackbar } from '@varlet/ui'
 import { onMounted, onUnmounted } from 'vue';
 
 const style_value = ref(true);

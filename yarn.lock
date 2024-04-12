@@ -1671,6 +1671,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@varlet/icons@npm:3.2.4":
+  version: 3.2.4
+  resolution: "@varlet/icons@npm:3.2.4"
+  checksum: 10c0/2753ef2d465607a48613c789816d1566492d64c1c36d67d4c9e8696347678da5c1d511636b72c9ea8854b99eb9a471e110b02e9f51fce7a4a5f8dce439623013
+  languageName: node
+  linkType: hard
+
 "@varlet/import-resolver@npm:^3.2.3":
   version: 3.2.3
   resolution: "@varlet/import-resolver@npm:3.2.3"
@@ -1702,7 +1709,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@varlet/ui@npm:^3.2.3, @varlet/ui@npm:latest":
+"@varlet/shared@npm:3.2.4":
+  version: 3.2.4
+  resolution: "@varlet/shared@npm:3.2.4"
+  checksum: 10c0/21a4fab3c2f186f2aa68d58a3423177d5ac535ec0f31f3dc957315217e74f653a6449865b4ed8e1e90ccab2d9959abf0ec74f7d4c6bca04be0c32e8521752e4b
+  languageName: node
+  linkType: hard
+
+"@varlet/ui@npm:^3.2.3":
   version: 3.2.3
   resolution: "@varlet/ui@npm:3.2.3"
   dependencies:
@@ -1718,6 +1732,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@varlet/ui@npm:latest":
+  version: 3.2.4
+  resolution: "@varlet/ui@npm:3.2.4"
+  dependencies:
+    "@popperjs/core": "npm:^2.11.6"
+    "@varlet/icons": "npm:3.2.4"
+    "@varlet/shared": "npm:3.2.4"
+    "@varlet/use": "npm:3.2.4"
+    dayjs: "npm:^1.10.4"
+    decimal.js: "npm:^10.2.1"
+  peerDependencies:
+    vue: ^3.2.0
+  checksum: 10c0/8226031faf6240d5b60bc5785000a4ac0d81a34e8b86c86011702e96ba9ab6192983a9b370762fabf6f703a2667318a15636a4ddb6b9f115ec5e359e1c8074bb
+  languageName: node
+  linkType: hard
+
 "@varlet/use@npm:3.2.3":
   version: 3.2.3
   resolution: "@varlet/use@npm:3.2.3"
@@ -1726,6 +1756,17 @@ __metadata:
   peerDependencies:
     vue: ^3.2.0
   checksum: 10c0/9feab8ce289957cb0babfc76abf38b646081680a8d86bc7feb230f9909cc9fb4411bc949311be92f5a57be5031182f322d41f098c2df64f77b427d46decee780
+  languageName: node
+  linkType: hard
+
+"@varlet/use@npm:3.2.4":
+  version: 3.2.4
+  resolution: "@varlet/use@npm:3.2.4"
+  dependencies:
+    "@varlet/shared": "npm:3.2.4"
+  peerDependencies:
+    vue: ^3.2.0
+  checksum: 10c0/43929e95004629bdd6be4e7c6d4d399b5686ef82b42f79d64f51f099575f134236da7ffe32bc2d20ebf1a8b70349f18e4a214b654887415655ffbfdcb808818c
   languageName: node
   linkType: hard
 
