@@ -69,15 +69,19 @@ import { onMounted } from "vue";
 const list = ref([]);
 const loading = ref(false);
 const finished = ref(false);
+const isLazy = useState("isLazy");
 
-let buffer_lesson_list = (await useFetch('/api/choose_lesson')).data.value;
-
-buffer_lesson_list.pop();
-buffer_lesson_list.shift();
+let buffer_lesson_list = [""];
 
 onMounted(async () => {
-    for (let index = 0; index < 10; index++) {
-        load();
+    buffer_lesson_list = (await useFetch('/api/choose_lesson')).data.value
+
+    let ms = isLazy.value ? 1000 : 0;
+    for (let index = 0; index < 10 && await delay(ms); index++) {
+        if (buffer_lesson_list.length != 0) {
+            console.log(buffer_lesson_list);
+            await load();
+        }
     }
 })
 
@@ -85,17 +89,22 @@ const knowMore = async (item) => {
     item.enable = !item.enable;
 }
 
+const delay = (ms) => new Promise((res, _) => {
+    setTimeout(() => {
+        res(true)
+    }, ms);
+})
+
 const load = async () => {
-    for (let index = 0; index < 10; index++) {
-        let buffer_lesson_info = await useFetch("/api/get_by_key", {
-            query: { "key": buffer_lesson_list.shift() }
-        });
-        list.value.push(buffer_lesson_info.data.value);
-        loading.value = false;
-        if (buffer_lesson_list.length == 0) {
-            finished.value = true;
-            break;
-        }
+    let buffer_lesson_info = await useFetch("/api/get_by_key", {
+        query: { "key": buffer_lesson_list.shift() }
+    });
+    list.value.push(buffer_lesson_info.data.value);
+    loading.value = false;
+    if (buffer_lesson_list.length == 0) {
+        finished.value = true;
+        return;
     }
+
 }
 </script>

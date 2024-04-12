@@ -1,7 +1,7 @@
 import net from "net";
 
 
-export default defineEventHandler((event) => new Promise((res, _) => {
+export default defineEventHandler((event) => new Promise((res, rej) => {
     const client = net.createConnection({
         port: 6379
     });
@@ -12,7 +12,13 @@ export default defineEventHandler((event) => new Promise((res, _) => {
     });
     client.on("data", buffer => {
         client.destroy();
-        let lesson_info_arrary = buffer.toString().split("\r\n")[0].split(",");
+        let get = buffer.toString();
+        // console.log(get);
+        if (get[0] == "-") {
+            console.log("get rej");
+            rej()
+        }
+        let lesson_info_arrary = get.split("\r\n")[0].split(",");
         let lesson_info = {
             "系": lesson_info_arrary[0].split("：")[1],
             "课程代码": lesson_info_arrary[1].split("：")[1],

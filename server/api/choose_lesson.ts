@@ -10,6 +10,16 @@ export default defineEventHandler((event) => new Promise((res, _) => {
     });
     client.on("data", buffer => {
         client.destroy();
-        res(buffer.toString().split("\r\n"));
+        let lesson = buffer.toString().split("\r\n");
+        lesson.shift();
+        lesson.pop();
+        console.log(lesson);
+        for (let index = 0; index < lesson.length; index++) {
+            const element = lesson[index];
+            if (element[0] != "+") {
+                console.log("bad data: " + element);
+            }
+        }
+        res(lesson);
     });
 }));
