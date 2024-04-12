@@ -1,6 +1,6 @@
 <template>
 
-    <var-list :finished="finished" v-model:loading="loading" @load="load" style="width: 100%;">
+    <var-list :finished="finished" v-model:loading="loading" @load="load(isLazy.value ? 5000 : 0)" style="width: 100%;">
         <div v-for="item in list" width="100%">
             <var-col :offset="1" :span="22" width="100%">
                 <var-cell border :key="item" :title="item.课程名称" style="width: 100%;" @click="knowMore(item)"
@@ -37,29 +37,6 @@
         </div>
     </var-list>
 
-    <!-- <var-cell>
-        <var-space>
-            <var-chip plain>
-                系: {{ item.系 }}
-            </var-chip>
-            <var-chip type="warning">
-                {{ get_data.课程性质 }}
-            </var-chip>
-            <var-chip type="info">
-                {{ get_data.校区 }}
-            </var-chip>
-            <var-chip type="primary">
-                {{ get_data.班级 }}
-            </var-chip>
-            <var-chip type="info">
-                {{ get_data.人数 }}
-            </var-chip>
-            <var-chip type="success">
-                {{ get_data.学分 }}
-            </var-chip>
-        </var-space>
-
-    </var-cell> -->
 
 </template>
 
@@ -76,11 +53,10 @@ let buffer_lesson_list = [""];
 onMounted(async () => {
     buffer_lesson_list = (await useFetch('/api/choose_lesson')).data.value
 
-    let ms = isLazy.value ? 1000 : 0;
+    let ms = isLazy.value ? 5000 : 0;
     for (let index = 0; index < 10 && await delay(ms); index++) {
         if (buffer_lesson_list.length != 0) {
-            console.log(buffer_lesson_list);
-            await load();
+            await load(0);
         }
     }
 })
@@ -95,7 +71,8 @@ const delay = (ms) => new Promise((res, _) => {
     }, ms);
 })
 
-const load = async () => {
+const load = async (ms) => {
+    await delay(ms);
     let buffer_lesson_info = await useFetch("/api/get_by_key", {
         query: { "key": buffer_lesson_list.shift() }
     });

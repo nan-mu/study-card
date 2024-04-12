@@ -13,7 +13,7 @@ export default defineEventHandler((event) => new Promise((res, _) => {
         let lesson = buffer.toString().split("\r\n");
         lesson.shift();
         lesson.pop();
-        console.log(lesson);
+        // console.log(lesson);
         for (let index = 0; index < lesson.length; index++) {
             const element = lesson[index];
             if (element[0] != "+") {
