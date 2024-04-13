@@ -1,11 +1,13 @@
 <script setup>
 import { StyleProvider, Themes } from '@varlet/ui'
 import { onMounted, onUnmounted } from 'vue';
+import { Snackbar } from "@varlet/ui";
 
 const style_value = useState("style_value", () => true);
-const active = ref(0);
+const active = useState("active_bottom_navigation", () => 0);
 const left = ref(false);
 const router = useRouter();
+const log = useState("log", () => `[${(new Date).toLocaleString()}]init log`);
 
 /// 根据系统亮暗主题设置主题
 const updateStyleValue = () => {
@@ -18,6 +20,24 @@ const updateStyleValue = () => {
 onMounted(() => {
     updateStyleValue();
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateStyleValue);
+
+    const route = useRoute();
+    switch (route.path) {
+        case "/log":
+            active.value = 3;
+            break;
+        case "/student_info":
+            active.value = 2;
+            break;
+        case "/choose_lesson":
+            active.value = 1;
+            break;
+        case "/":
+            active.value = 0;
+            break;
+        default:
+            break;
+    }
 });
 
 /// 注销监听系统亮暗主题变化
@@ -40,18 +60,22 @@ const switch_page = (page) => {
         case 0:
             // 执行首页路由切换逻辑
             router.push('/');
+            log.value.push(`[${(new Date).toLocaleString()}]跳转到/`);
             break;
         case 1:
             // 执行选课路由切换逻辑
             router.push('/choose_lesson');
+            log.value.push(`[${(new Date).toLocaleString()}]跳转到/course_lesson`);
             break;
         case 2:
             // 执行学生信息路由切换逻辑
             router.push('/student_info');
+            log.value.push(`[${(new Date).toLocaleString()}]跳转到/student_info`);
             break;
         case 3:
             // 执行日志路由切换逻辑
             router.push('/log');
+            log.value.push(`[${(new Date).toLocaleString()}]跳转到/log`);
             break;
     }
 }
@@ -60,7 +84,6 @@ const switch_page = (page) => {
 
 <template>
     <!-- 顶栏 -->
-    <!-- 推送测试 -->
     <var-app-bar :fixed="true" title="数据库大作业"
         image-linear-gradient="to right top, rgba(29, 68, 147, 0.5) 0%, rgba(74, 198, 170, 0.9) 100%">
 
