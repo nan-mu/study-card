@@ -8,7 +8,7 @@ const active = useState("active_bottom_navigation", () => 0);
 const left = ref(false);
 const router = useRouter();
 const log = useState("log", () => [`[${(new Date).toLocaleString()}]init log`]);
-const login = useState("login", () => { return { "id": "", "islogin": false, "name": "" } });
+const login = useState("login", () => { return { "id": "", "islogin": false, "name": "", "majoy": "", "gender": "", "class": "" } });
 
 /// 根据系统亮暗主题设置主题
 const updateStyleValue = () => {

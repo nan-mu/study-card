@@ -47,7 +47,6 @@ const list = ref([]);
 const loading = ref(false);
 const finished = ref(false);
 const isLazy = useState("is_lazy", () => false);
-const active = useState("active_bottom_navigation", () => 1);
 const log = useState("log", () => [`[${(new Date).toLocaleString()}]init log`]);
 
 let buffer_lesson_list = [""];
@@ -86,7 +85,7 @@ const load = async (ms) => {
     await delay(ms);
     log.value.push(`[${(new Date).toLocaleString()}]加载${buffer_lesson_list[0]}到列表`);
     let buffer_lesson_info = await useFetch("/api/get_by_key", {
-        query: { "key": buffer_lesson_list.shift() }
+        query: { "key": buffer_lesson_list.shift(), "type": "Lesson" }
     });
     list.value.push(buffer_lesson_info.data.value);
     loading.value = false;
