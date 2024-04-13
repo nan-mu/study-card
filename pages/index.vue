@@ -1,6 +1,6 @@
 <template>
     <var-col :offset="1" :span="22">
-        <h1>欢迎！🎉</h1>
+        <h1>欢迎{{ " " + login.name }}！🎉</h1>
     </var-col>
     <var-col :offset="1" :span="22">
         <p>这是075223班叶正楠的数据库结课作业，下面是功能介绍：</p>
@@ -65,6 +65,7 @@ import { StyleProvider, Themes } from '@varlet/ui'
 const style_value = useState("style_value");
 const isLazy = useState("is_lazy", () => false);
 const log = useState("log", () => [`[${(new Date).toLocaleString()}]init log`]);
+const login = useState("login", () => { id: NaN; islogin: false; name: "" });
 /// 切换主题
 function toggle_style_value() {
     style_value.value = !style_value.value;
