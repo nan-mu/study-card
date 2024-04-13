@@ -7,7 +7,7 @@ const style_value = useState("style_value", () => true);
 const active = useState("active_bottom_navigation", () => 0);
 const left = ref(false);
 const router = useRouter();
-const log = useState("log", () => `[${(new Date).toLocaleString()}]init log`);
+const log = useState("log", () => [`[${(new Date).toLocaleString()}]init log`]);
 
 /// 根据系统亮暗主题设置主题
 const updateStyleValue = () => {

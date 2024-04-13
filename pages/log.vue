@@ -1,10 +1,15 @@
 <template>
-    <var-col v-for="item in log" :offset="1" :span="22" width="100%">
-        <var-cell :key="item" :title="item" />
-    </var-col>
+    <div v-for="item in log" style="width: 100%;">
+        <var-col :offset="1" :span="22">
+            <var-cell>
+                {{ item }}
+            </var-cell>
+        </var-col>
+    </div>
+
 </template>
 
 <script setup>
 const active = useState("active_bottom_navigation", () => 3);
-const log = useState("log", () => `[${(new Date).toLocaleString()}]init log`);
+const log = useState("log", () => [`[${(new Date).toLocaleString()}]init log`]);
 </script>

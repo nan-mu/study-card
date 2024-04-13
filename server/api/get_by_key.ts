@@ -13,7 +13,6 @@ export default defineEventHandler((event) => new Promise((res, rej) => {
     client.on("data", buffer => {
         client.destroy();
         let get = buffer.toString();
-        // console.log(get);
         if (get[0] == "-") {
             console.log("get rej");
             rej()

@@ -1,6 +1,6 @@
 <template>
 
-    <var-list :finished="finished" v-model:loading="loading" @load="load(isLazy.value ? 5000 : 0)" style="width: 100%;">
+    <var-list :finished="finished" v-model:loading="loading" @load="load" style="width: 100%;">
         <div v-for="item in list" width="100%">
             <var-col :offset="1" :span="22" width="100%">
                 <var-cell border :key="item" :title="item.课程名称" style="width: 100%;" @click="knowMore(item)"
@@ -48,17 +48,20 @@ const loading = ref(false);
 const finished = ref(false);
 const isLazy = useState("is_lazy", () => false);
 const active = useState("active_bottom_navigation", () => 1);
-const log = useState("log", () => `[${(new Date).toLocaleString()}]init log`);
+const log = useState("log", () => [`[${(new Date).toLocaleString()}]init log`]);
 
 let buffer_lesson_list = [""];
 
 onMounted(async () => {
-    buffer_lesson_list = (await useFetch('/api/choose_lesson')).Date.value
-
+    buffer_lesson_list = (await useFetch('/api/choose_lesson')).data.value
+    log.value.push(`[${(new Date).toLocaleString()}]加载选课列表 ${isLazy.value ? "懒加载" : "立即加载"}`);
     let ms = isLazy.value ? 5000 : 0;
-    for (let index = 0; index < 10 && await delay(ms); index++) {
+    for (let index = 0; index < 10; index++) {
         if (buffer_lesson_list.length != 0) {
-            await load(0);
+            await load();
+        } else {
+            finished.value = true;
+            break;
         }
     }
 })
@@ -73,14 +76,17 @@ const delay = (ms) => new Promise((res, _) => {
     }, ms);
 })
 
-const load = async (ms) => {
+const load = async () => {
     let key = buffer_lesson_list.shift();
+    if (key == "") {
+        return;
+    }
     log.value.push(`[${(new Date).toLocaleString()}]加载${key}到列表`);
-    await delay(ms);
     let buffer_lesson_info = await useFetch("/api/get_by_key", {
         query: { "key": key }
     });
-    list.value.push(buffer_lesson_info.Date.value);
+    log.value.push(`[${(new Date).toLocaleString()}]加载数据${buffer_lesson_info.Date.value}`);
+    list.value.push(buffer_lesson_info.data.value);
     loading.value = false;
     if (buffer_lesson_list.length == 0) {
         finished.value = true;
