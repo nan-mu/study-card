@@ -44,6 +44,7 @@ export default defineEventHandler((event) => new Promise((res, rej) => {
                 "班级": data_info_arrary[3].split("：")[1],
                 "专业": data_info_arrary[4].split("：")[1],
             }
+            console.log(data_info);
             res(data_info);
         }
     });

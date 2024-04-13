@@ -48,40 +48,50 @@ const form = ref(null);
 const src = ref("");
 const log = useState("log", () => [`[${(new Date).toLocaleString()}]init log`]);
 const login = useState("login", () => { return { "id": "", "islogin": false, "name": "", "majoy": "", "gender": "", "class": "" } });
-const student_id_list = (await useFetch("/api/find", {
+const student_id_list: any = (await useFetch("/api/find", {
     query: { "type": "Student" }
 })).data.value;
 
-const veify = async (v) => {
-    let id = "";
+const veify = async (v: string) => {
     if (v == "") {
-        id = student_id_list[Math.floor(Math.random() * student_id_list.length)];
-        log.value.push(`[${(new Date).toLocaleString()}]随机登陆学号 ${id}`);
+        return true;
     } else if (student_id_list.includes(`+${v}`)) {
-        id = `+${v}`;
         log.value.push(`[${(new Date).toLocaleString()}]登陆 ${v} 成功`);
+        login.value.id = v;
+        return true;
     } else {
         log.value.push(`[${(new Date).toLocaleString()}]尝试登陆学号 ${v}`);
         return '未填写学号或学号错误'
     }
-    login.value.id = id.slice(1);
-    let student = (await useFetch("/api/get_by_key", {
-        query: { "key": `+${login.value.id}`, "type": "Student" }
-    })).data.value;
-    login.value.islogin = true;
-    login.value.name = student.姓名;
-    login.value.majoy = student.专业;
-    login.value.gender = student.性别;
-    if (student.性别 == "男") {
-        src.value = "/male.jpeg";
-    } else if (student.性别 == "女") {
-        src.value = "/female.jpeg";
-    }
-    login.value.class = student.班级;
-    return true
 }
 
-const submit = async (v) => {
-    await veify("");
+const submit = async (v: boolean) => {
+
+    if (login.value.id == "") {
+        login.value.id = student_id_list[Math.floor(Math.random() * student_id_list.length)].slice(1);
+        log.value.push(`[${(new Date).toLocaleString()}]随机登陆学号 ${login.value.id}`);
+    }
+    if (v) {
+        type Student = {
+            "学号": string;
+            "姓名": string;
+            "性别": string;
+            "班级": string;
+            "专业": string;
+        };
+        let student: Student = (await useFetch("/api/get_by_key", {
+            query: { "key": `+${login.value.id}`, "type": "Student" }
+        })).data.value as Student;
+        login.value.islogin = true;
+        login.value.name = student.姓名;
+        login.value.majoy = student.专业;
+        login.value.gender = student.性别;
+        if (student.性别 == "男") {
+            src.value = "/male.jpeg";
+        } else if (student.性别 == "女") {
+            src.value = "/female.jpeg";
+        }
+        login.value.class = student.班级;
+    }
 }
 </script>

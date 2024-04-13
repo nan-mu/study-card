@@ -1,6 +1,5 @@
 import net from "net";
 
-
 export default defineEventHandler((event) => new Promise((res, _) => {
     const client = net.createConnection({
         port: 6379
@@ -27,7 +26,6 @@ export default defineEventHandler((event) => new Promise((res, _) => {
             let student = buffer.toString().split("\r\n");
             student.shift();
             student.pop();
-            console.log(student);
             for (let index = 0; index < student.length; index++) {
                 const element = student[index];
                 if (element[0] != "+") {
