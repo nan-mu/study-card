@@ -49,6 +49,7 @@ onUnmounted(() => {
 /// 切换主题
 function toggle_style_value() {
     style_value.value = !style_value.value;
+    log.value.push(`[${(new Date).toLocaleString()}]切换主题为${style_value.value ? "暗色" : "亮色"}`)
     StyleProvider(style_value.value ? Themes.md3Dark : Themes.md3Light);
 }
 
