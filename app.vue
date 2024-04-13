@@ -116,17 +116,34 @@ const switch_page = (page) => {
         <var-bottom-navigation-item icon="xml" label="日志" />
     </var-bottom-navigation>
 
-    <!-- 左侧弹出菜单 感觉 安卓端还是不适合，有时间做不同设备适配，没时间就一个底栏上吧
+    <!-- 左侧弹出菜单 感觉 安卓端还是不适合，有时间做不同设备适配，没时间就一个底栏上吧 -->
     <var-popup position="left" v-model:show="left">
-        <var-row>
-            <var-col :offset="1" :span="10">
-                <var-button text>
-                    <var-icon name="home" />
-                    首页
+        <var-app-bar :fixed="true" title="日志"
+            image-linear-gradient="to right top, rgba(29, 68, 147, 0.5) 0%, rgba(74, 198, 170, 0.9) 100%">
+
+            <template #left>
+                <var-button round text @click="left = !left">
+                    <var-icon name="menu" />
                 </var-button>
-            </var-col>
+            </template>
+
+            <template #right>
+                <var-button round text @click="toggle_style_value()">
+                    <var-icon :name="style_value ? 'white-balance-sunny' : 'weather-night'" />
+                </var-button>
+            </template>
+
+        </var-app-bar>
+        <var-row>
+            <div v-for="item in log" style="width: 100%;">
+                <var-col :offset="1" :span="22">
+                    <var-cell style="font-size: 0.8em;">
+                        {{ item }}
+                    </var-cell>
+                </var-col>
+            </div>
         </var-row>
-    </var-popup> -->
+    </var-popup>
 
 </template>
 

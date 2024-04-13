@@ -8,13 +8,17 @@ export default defineEventHandler((event) => new Promise((res, rej) => {
     client.on("connect", () => {
         // console.log(event.context);
         const query = getQuery(event);
+        if ((query.key as string)[0] != "+") {
+            console.log("get rej false key");
+            rej();
+        }
         client.write("*2\r\n+get\r\n" + query.key + "\r\n");
     });
     client.on("data", buffer => {
         client.destroy();
         let get = buffer.toString();
         if (get[0] == "-") {
-            console.log("get rej");
+            console.log("get rej bad data: " + get);
             rej()
         }
         let lesson_info_arrary = get.split("\r\n")[0].split(",");

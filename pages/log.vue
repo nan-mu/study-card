@@ -6,7 +6,6 @@
             </var-cell>
         </var-col>
     </div>
-
 </template>
 
 <script setup>

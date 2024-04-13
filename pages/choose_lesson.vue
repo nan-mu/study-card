@@ -53,7 +53,9 @@ const log = useState("log", () => [`[${(new Date).toLocaleString()}]init log`]);
 let buffer_lesson_list = [""];
 
 onMounted(async () => {
-    buffer_lesson_list = (await useFetch('/api/choose_lesson')).data.value
+    buffer_lesson_list = (await useFetch("/api/find", {
+        query: { "type": "Lesson" }
+    })).data.value
     log.value.push(`[${(new Date).toLocaleString()}]加载选课列表 ${isLazy.value ? "懒加载" : "立即加载"}`);
     let ms = isLazy.value ? 5000 : 0;
     for (let index = 0; index < 10 && await delay(ms); index++) {
