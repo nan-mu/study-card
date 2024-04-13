@@ -66,7 +66,6 @@ const veify = async (v: string) => {
 }
 
 const submit = async (v: boolean) => {
-
     if (login.value.id == "") {
         login.value.id = student_id_list[Math.floor(Math.random() * student_id_list.length)].slice(1);
         log.value.push(`[${(new Date).toLocaleString()}]随机登陆学号 ${login.value.id}`);

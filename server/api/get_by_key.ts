@@ -17,6 +17,7 @@ export default defineEventHandler((event) => new Promise((res, rej) => {
     client.on("data", buffer => {
         client.destroy();
         let get = buffer.toString();
+        // console.log(get);
         if (get[0] == "-") {
             console.log("get rej bad data: " + get);
             rej()
@@ -44,7 +45,7 @@ export default defineEventHandler((event) => new Promise((res, rej) => {
                 "班级": data_info_arrary[3].split("：")[1],
                 "专业": data_info_arrary[4].split("：")[1],
             }
-            console.log(data_info);
+            // console.log(data_info);
             res(data_info);
         }
     });
