@@ -65,7 +65,7 @@ import { StyleProvider, Themes } from '@varlet/ui'
 const style_value = useState("style_value");
 const isLazy = useState("is_lazy", () => false);
 const log = useState("log", () => [`[${(new Date).toLocaleString()}]init log`]);
-const login = useState("login", () => { id: NaN; islogin: false; name: "" });
+const login = useState("login", () => { return { "id": "", "islogin": false, "name": "" } });
 /// 切换主题
 function toggle_style_value() {
     style_value.value = !style_value.value;
