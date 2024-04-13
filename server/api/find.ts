@@ -27,11 +27,11 @@ export default defineEventHandler((event) => new Promise((res, _) => {
             let student = buffer.toString().split("\r\n");
             student.shift();
             student.pop();
-            // console.log(student);
+            console.log(student);
             for (let index = 0; index < student.length; index++) {
                 const element = student[index];
                 if (element[0] != "+") {
-                    console.log("bad data: " + element);
+                    console.log(`bad data: |${element}|${index}|${typeof element}`);
                 }
             }
             res(student);
