@@ -41,8 +41,8 @@ export default defineEventHandler((event) => new Promise((res, rej) => {
                 "学号": data_info_arrary[0].split("：")[1],
                 "姓名": data_info_arrary[1].split("：")[1],
                 "性别": data_info_arrary[2].split("：")[1],
-                "专业": data_info_arrary[3].split("：")[1],
-                "班级": data_info_arrary[4].split("：")[1],
+                "班级": data_info_arrary[3].split("：")[1],
+                "专业": data_info_arrary[4].split("：")[1],
             }
             res(data_info);
         }

@@ -1,6 +1,6 @@
 <template>
     <div v-for="item in log" style="width: 100%;">
-        <var-space :offset="1" :span="22">
+        <var-space direction="column">
             {{ item }}
         </var-space>
     </div>

@@ -11,13 +11,41 @@
             </var-form>
         </var-paper>
     </var-overlay>
+    <var-skeleton v-if="!login.islogin" title avatar :rows="3" :loading="!login.islogin" style="width: 100%;" />
+    <div style="width: 100%;" v-else>
+        <var-col :span="18" :offset="2">
+            <var-space :size="[20, 20]">
+                <var-avatar :src="src" />
+                <h1>{{ login.name }}</h1>
+            </var-space>
+        </var-col>
+        <var-col :span="22" :offset="1">
+            <var-table>
+                <thead>
+                    <tr>
+                        <th>学号</th>
+                        <th>专业</th>
+                        <th>性别</th>
+                        <th>班级</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ login.id }}</td>
+                        <td>{{ login.majoy }}</td>
+                        <td>{{ login.gender }}</td>
+                        <td>{{ login.class }}</td>
+                    </tr>
+                </tbody>
+            </var-table>
+        </var-col>
+    </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-// import { Snackbar } from "@varlet/ui";
-// student_id_list.include(`+${v}`)
 const form = ref(null);
+const src = ref("");
 const log = useState("log", () => [`[${(new Date).toLocaleString()}]init log`]);
 const login = useState("login", () => { return { "id": "", "islogin": false, "name": "", "majoy": "", "gender": "", "class": "" } });
 const student_id_list = (await useFetch("/api/find", {
@@ -26,7 +54,6 @@ const student_id_list = (await useFetch("/api/find", {
 
 const veify = async (v) => {
     let id = "";
-
     if (v == "") {
         id = student_id_list[Math.floor(Math.random() * student_id_list.length)];
         log.value.push(`[${(new Date).toLocaleString()}]随机登陆学号 ${id}`);
@@ -38,7 +65,6 @@ const veify = async (v) => {
         return '未填写学号或学号错误'
     }
     login.value.id = id.slice(1);
-
     let student = (await useFetch("/api/get_by_key", {
         query: { "key": `+${login.value.id}`, "type": "Student" }
     })).data.value;
@@ -46,6 +72,11 @@ const veify = async (v) => {
     login.value.name = student.姓名;
     login.value.majoy = student.专业;
     login.value.gender = student.性别;
+    if (student.性别 == "男") {
+        src.value = "/male.jpeg";
+    } else if (student.性别 == "女") {
+        src.value = "/female.jpeg";
+    }
     login.value.class = student.班级;
     return true
 }

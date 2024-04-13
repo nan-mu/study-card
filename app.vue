@@ -106,13 +106,13 @@ const switch_page = (page) => {
 
     <!-- 页面 -->
     <var-row :gutter="[10, 10]">
-        <NuxtPage />
+        <NuxtPage style="width: 100%;" />
     </var-row>
 
     <br /><br /><br /><br />
     <var-bottom-navigation @change="switch_page" variant v-model:active="active" :fixed="true">
         <var-bottom-navigation-item icon="home" label="首页" />
-        <var-bottom-navigation-item icon="calendar-month" label="选课" />
+        <var-bottom-navigation-item icon="calendar-month" label="课程" />
         <var-bottom-navigation-item icon="card-account-details-outline" label="学生信息" />
         <var-bottom-navigation-item icon="xml" label="日志" />
     </var-bottom-navigation>
@@ -137,11 +137,9 @@ const switch_page = (page) => {
         </var-app-bar>
         <var-row>
             <div v-for="item in log" style="width: 100%;">
-                <var-col :offset="1" :span="22">
-                    <var-cell style="font-size: 0.8em;">
-                        {{ item }}
-                    </var-cell>
-                </var-col>
+                <var-space direction="column">
+                    {{ item }}
+                </var-space>
             </div>
         </var-row>
     </var-popup>
